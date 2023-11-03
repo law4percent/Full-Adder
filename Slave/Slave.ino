@@ -9,12 +9,9 @@ int ADDEND_r, ADDEND_l;
 
 int sum;
 int right_digit, left_digit;
-bool* left_D;
-bool* right_D;
 int i;
 
 int BinToDec(bool bin[]);
-bool* DecToBin(int dec);
 
 void setup() {
   Serial.begin(9600);
@@ -71,24 +68,136 @@ void receiveEvent(int howMany) {
     right_digit = sum % 10;
   }
 
-  left_D = DecToBin(left_digit);
-  right_D = DecToBin(right_digit);
-
   // Left Digit
-  for (i = 3; i >= 0; i--) {
-    Serial.print(left_D[i]);
-    digitalWrite(LED_l[i], left_D[i]);
+  switch (left_digit) {
+    case 9:
+      digitalWrite(LED_l[3], 1);
+      digitalWrite(LED_l[2], 0);
+      digitalWrite(LED_l[1], 0);
+      digitalWrite(LED_l[0], 1);
+      break;
+    case 8:
+      digitalWrite(LED_l[3], 1);
+      digitalWrite(LED_l[2], 0);
+      digitalWrite(LED_l[1], 0);
+      digitalWrite(LED_l[0], 0);
+      break;
+    case 7:
+      digitalWrite(LED_l[3], 0);
+      digitalWrite(LED_l[2], 1);
+      digitalWrite(LED_l[1], 1);
+      digitalWrite(LED_l[0], 1);
+      break;
+    case 6:
+      digitalWrite(LED_l[3], 0);
+      digitalWrite(LED_l[2], 1);
+      digitalWrite(LED_l[1], 1);
+      digitalWrite(LED_l[0], 0);
+      break;
+    case 5:
+      digitalWrite(LED_l[3], 0);
+      digitalWrite(LED_l[2], 1);
+      digitalWrite(LED_l[1], 0);
+      digitalWrite(LED_l[0], 1);
+      break;
+    case 4:
+      digitalWrite(LED_l[3], 0);
+      digitalWrite(LED_l[2], 1);
+      digitalWrite(LED_l[1], 0);
+      digitalWrite(LED_l[0], 0);
+      break;
+    case 3:
+      digitalWrite(LED_l[3], 0);
+      digitalWrite(LED_l[2], 0);
+      digitalWrite(LED_l[1], 1);
+      digitalWrite(LED_l[0], 1);
+      break;
+    case 2:
+      digitalWrite(LED_l[3], 0);
+      digitalWrite(LED_l[2], 0);
+      digitalWrite(LED_l[1], 1);
+      digitalWrite(LED_l[0], 0);
+      break;
+    case 1:
+      digitalWrite(LED_l[3], 0);
+      digitalWrite(LED_l[2], 0);
+      digitalWrite(LED_l[1], 0);
+      digitalWrite(LED_l[0], 1);
+      break;
+    default:
+      digitalWrite(LED_l[3], 0);
+      digitalWrite(LED_l[2], 0);
+      digitalWrite(LED_l[1], 0);
+      digitalWrite(LED_l[0], 0);
+      break;
   }
-  Serial.print(" ");
+  
   // Right Digit
-  for (i = 3; i >= 0; i--) {
-    Serial.print(right_D[i]);
-    digitalWrite(LED_r[i], right_D[i]);
+  switch (right_digit) {
+    case 9:
+      digitalWrite(LED_r[3], 1);
+      digitalWrite(LED_r[2], 0);
+      digitalWrite(LED_r[1], 0);
+      digitalWrite(LED_r[0], 1);
+      break;
+    case 8:
+      digitalWrite(LED_r[3], 1);
+      digitalWrite(LED_r[2], 0);
+      digitalWrite(LED_r[1], 0);
+      digitalWrite(LED_r[0], 0);
+      break;
+    case 7:
+      digitalWrite(LED_r[3], 0);
+      digitalWrite(LED_r[2], 1);
+      digitalWrite(LED_r[1], 1);
+      digitalWrite(LED_r[0], 1);
+      break;
+    case 6:
+      digitalWrite(LED_r[3], 0);
+      digitalWrite(LED_r[2], 1);
+      digitalWrite(LED_r[1], 1);
+      digitalWrite(LED_r[0], 0);
+      break;
+    case 5:
+      digitalWrite(LED_r[3], 0);
+      digitalWrite(LED_r[2], 1);
+      digitalWrite(LED_r[1], 0);
+      digitalWrite(LED_r[0], 1);
+      break;
+    case 4:
+      digitalWrite(LED_r[3], 0);
+      digitalWrite(LED_r[2], 1);
+      digitalWrite(LED_r[1], 0);
+      digitalWrite(LED_r[0], 0);
+      break;
+    case 3:
+      digitalWrite(LED_r[3], 0);
+      digitalWrite(LED_r[2], 0);
+      digitalWrite(LED_r[1], 1);
+      digitalWrite(LED_r[0], 1);
+      break;
+    case 2:
+      digitalWrite(LED_r[3], 0);
+      digitalWrite(LED_r[2], 0);
+      digitalWrite(LED_r[1], 1);
+      digitalWrite(LED_r[0], 0);
+      break;
+    case 1:
+      digitalWrite(LED_r[3], 0);
+      digitalWrite(LED_r[2], 0);
+      digitalWrite(LED_r[1], 0);
+      digitalWrite(LED_r[0], 1);
+      break;
+    default:
+      digitalWrite(LED_r[3], 0);
+      digitalWrite(LED_r[2], 0);
+      digitalWrite(LED_r[1], 0);
+      digitalWrite(LED_r[0], 0);
+      break;
   }
-  Serial.println();
   Serial.println();
 
-  delay(5000);
+  delay(100);
 }
 
 int BinToDec(bool bin[]) {
@@ -118,72 +227,4 @@ int BinToDec(bool bin[]) {
   }
 
   return sum;
-}
-
-bool* DecToBin(int dec) {
-  bool* bin = (bool*)malloc(sizeof(bool) * 4);
-  switch (dec) {
-    case 9:
-      bin[3] = 1;
-      bin[2] = 0;
-      bin[1] = 0;
-      bin[0] = 1;
-      break;
-    case 8:
-      bin[3] = 1;
-      bin[2] = 0;
-      bin[1] = 0;
-      bin[0] = 0;
-      break;
-    case 7:
-      bin[3] = 0;
-      bin[2] = 1;
-      bin[1] = 1;
-      bin[0] = 1;
-      break;
-    case 6:
-      bin[3] = 0;
-      bin[2] = 1;
-      bin[1] = 1;
-      bin[0] = 0;
-      break;
-    case 5:
-      bin[3] = 0;
-      bin[2] = 1;
-      bin[1] = 0;
-      bin[0] = 1;
-      break;
-    case 4:
-      bin[3] = 0;
-      bin[2] = 1;
-      bin[1] = 0;
-      bin[0] = 0;
-      break;
-    case 3:
-      bin[3] = 0;
-      bin[2] = 0;
-      bin[1] = 1;
-      bin[0] = 1;
-      break;
-    case 2:
-      bin[3] = 0;
-      bin[2] = 0;
-      bin[1] = 1;
-      bin[0] = 0;
-      break;
-    case 1:
-      bin[3] = 0;
-      bin[2] = 0;
-      bin[1] = 0;
-      bin[0] = 1;
-      break;
-    default:
-      bin[3] = 0;
-      bin[2] = 0;
-      bin[1] = 0;
-      bin[0] = 0;
-      break;
-  }
-
-  return bin;
 }
