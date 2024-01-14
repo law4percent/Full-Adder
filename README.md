@@ -1,7 +1,7 @@
-# Full-Adder
+# Desciption
 A basic full-adder using two Arduino boards: a Master and a Slave.
 
-# Materials/Components Need
+# Materials/Components Needed
 - Breadboard
 - 4pcs of Seven Segments (Cathode)
 - 4pcs of ICs 7448
